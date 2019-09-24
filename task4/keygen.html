@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generate RSA Keys</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1 class="title">Generate RSA Keys</h1>
+    <div class="nav">
+        <a href="index.html" id="back" class="btn">Back</a>
+    </div>
+    <div class="container">
+        <a href="#" class="btn">Generate</a>
+        <div class="keys row">
+            <div class="private container">
+                <label for="private">Private Key</label>
+                <textarea name="privateKey" id="private" cols="30" rows="10" readonly></textarea>
+            </div>
+            <div class="public container">
+                <label for="public">Public Key</label>
+                <textarea name="publicKey" id="public" cols="30" rows="10" readonly></textarea>
+            </div>
+        </div>
+        <a href="#" class="disabled btn">Save Keys</a>
+    </div>
+    <script>document.querySelector("#back").addEventListener("click", ()=>window.history.back())</script>
+</body>
+</html>
