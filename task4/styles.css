@@ -1,55 +1,58 @@
 :root {
-    --site-color: #1976d2;
-    --site-color-dark: #004ba0;
-    --site-color-light: #63a4ff;
+  --site-color: #1976d2;
+  --site-color-dark: #004ba0;
+  --site-color-light: #63a4ff;
 }
 body {
-    font-family: Arial, Helvetica, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
 }
 .title {
-    text-align: center;
+  text-align: center;
+}
+#key_file {
+  display: none;
 }
 .container {
-    width: 75%;
-    display: flex;
-    align-items: center;
-    justify-items: center;
-    flex-direction: column;
-    margin: auto;
+  width: 75%;
+  display: flex;
+  align-items: center;
+  justify-items: center;
+  flex-direction: column;
+  margin: auto;
 }
 a.btn {
-    text-decoration: none;
-    color: white;
-    background-color: var(--site-color);
-    width: 8%;
-    text-align: center;
-    margin: 5px;
-    padding: 1em;
+  text-decoration: none;
+  color: white;
+  background-color: var(--site-color);
+  width: 8%;
+  text-align: center;
+  margin: 5px;
+  padding: 1em;
 }
 .main a.btn {
-    font-size: 20px;
-    width: 30%;
-    padding: 2em;
+  font-size: 20px;
+  width: 30%;
+  padding: 2em;
 }
 a.btn:hover {
-    background-color: var(--site-color-dark);
+  background-color: var(--site-color-dark);
 }
 a.btn.disabled {
-    color: black;
-    background-color: #aaaaaa;
+  color: black;
+  background-color: #aaaaaa;
 }
 a.btn.disabled:hover {
-    cursor: default;
+  cursor: default;
 }
 .row {
-    display: flex;
-    justify-content: space-around;
-    margin: 5px;
-    padding: 1em;
+  display: flex;
+  justify-content: space-around;
+  margin: 5px;
+  padding: 1em;
 }
 .keys {
-    width: 50%;
+  width: 50%;
 }
 .nav .btn {
-    border-radius: 10px;
+  border-radius: 10px;
 }
