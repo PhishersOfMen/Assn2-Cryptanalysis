@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Generate RSA Keys</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="pubkeygen.js"></script>
 </head>
 <body>
     <h1 class="title">Generate RSA Keys</h1>
@@ -12,7 +13,7 @@
         <a href="index.html" id="back" class="btn">Back</a>
     </div>
     <div class="container">
-        <a href="#" class="btn">Generate</a>
+        <a href="#" id="generate" class="btn">Generate</a>
         <div class="keys row">
             <div class="private container">
                 <label for="private">Private Key</label>
@@ -25,6 +26,11 @@
         </div>
         <a href="#" class="disabled btn">Save Keys</a>
     </div>
-    <script>document.querySelector("#back").addEventListener("click", ()=>window.history.back())</script>
+    <script>
+        document.querySelector("#back").addEventListener("click", ()=>window.history.back())
+        document.querySelector("#generate").addEventListener("click", ()=>{
+            gen_public_key();
+        });
+    </script>
 </body>
 </html>
