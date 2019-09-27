@@ -16,25 +16,16 @@ function get_primes(max) {
     }
 
     // Add prime elements onto array
-    let prime_array = new Array();
-    prime_array.push(2);
+    let primeArray = new Array();
+    primeArray.push(2);
     for (let i = 3; i < max; i+=2) {
         if (temp[i]) {
-            prime_array.push(i);
+            primeArray.push(i);
         }
     }
 
-    return prime_array;
+    return primeArray;
 }
-
-// function is_prime(n) {
-//     for ( let i = 2; i < n; i++ ) {
-//         if ( n % i === 0 ) {
-//             return false;
-//         }
-//     }
-//     return true;
-// }
 
 function random() {
     return window.crypto.getRandomValues(new Uint32Array(1))[0] / 4294967295;
@@ -45,25 +36,16 @@ function getRandomInt(max) {
 }
 
 function gen_prime() { 
-    // let p = getRandomInt(3678433195);
-    // let q = getRandomInt(3678433195);
-    // while (!is_prime(p)) {
-    //     p = getRandomInt(3678433195);
-    // }
-    // while (!is_prime(q) || p == q) {
-    //     q = getRandomInt(3678433195);
-    // }
+    let max = 10000;
+    let primeArray = get_primes(max);
 
-    let max = 100000;
-    let prime_array = get_primes(max);
-
-    let i = getRandomInt(prime_array.length);
-    let j = getRandomInt(prime_array.length);
+    let i = getRandomInt(primeArray.length);
+    let j = getRandomInt(primeArray.length);
     while (i == j) {
-        j = getRandomInt(prime_array.length);
+        j = getRandomInt(primeArray.length);
     }
-    let p = prime_array[i];
-    let q = prime_array[j];
+    let p = primeArray[i];
+    let q = primeArray[j];
 
     return {
         'p': p,
@@ -80,8 +62,50 @@ function f_n(prime) {
     return (prime.p - 1) * (prime.q - 1);
 }
 
-function rel_prime() {
+function rel_prime(fn) {
+    let temp = new Array(fn);
 
+    if (fn % 2 == 0) {
+        for (let i = 3; i < fn; i+=2){
+            if (fn % i != 0) {
+                temp[i] = 1;
+            }
+            else {
+                temp[i] = 0;
+            }
+        }
+    }
+    else {
+        temp[2] = 1;
+        for (let i = 3; i < fn; i++) {
+            if (fn % i != 0) {
+                temp[i] = 1;
+            }
+            else {
+                temp[i] = 0;
+            }
+        }
+    }
+
+    let relPrimes = new Array();
+    relPrimes.push(1);
+    if (fn % 2 == 0) {
+        relPrimes.push(2);
+        for (let i = 3; i < fn; i+=2) {
+            if (temp[i]) {
+                relPrimes.push(i);
+            }
+        }
+    }
+    else {
+        for (let i = 3; i < fn; i++) {
+            if (temp[i]) {
+                relPrimes.push(i);
+            }
+        }
+    }
+
+    return relPrimes[getRandomInt(relPrimes.length)];
 }
 
 function display_key(pub_key) {
@@ -90,5 +114,9 @@ function display_key(pub_key) {
 
 function gen_public_key() {
     let primes = gen_prime();
-    console.log(primes);
+    let m = modulus(primes);
+    let fn = f_n(primes);
+    let relPrime = rel_prime(fn);
+
+    display_key((relPrime,m));
 }
