@@ -118,5 +118,9 @@ function gen_public_key() {
     let fn = f_n(primes);
     let relPrime = rel_prime(fn);
 
-    display_key((relPrime,m));
+    let temp = [relPrime,m];
+    console.log(temp[0]);
+    console.log(temp[1]);
+
+    display_key([relPrime,m]);
 }
