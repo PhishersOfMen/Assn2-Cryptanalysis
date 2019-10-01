@@ -29,7 +29,6 @@
     <script>
       var key;
       var mod;
-      var cipherText;
 
       document
         .querySelector("#back")
@@ -43,7 +42,9 @@
         var reader = new FileReader();
         reader.readAsText(file, "UTF-8");
         reader.onload = function(evt) {
-          key = evt.target.result;
+          let keymod = evt.target.result.split(",");
+          key = keymod[0];
+          mod = keymod[1];
         };
         document.getElementById("file_button").disabled = true;
         document.getElementById("file_button").value = "Key Loaded";
@@ -55,8 +56,13 @@
 
       function decrypt() {
         text = document.getElementById("cipher").value;
-        ciphertext = Math.pow(text, key) % mod;
-        document.getElementById("message").innerHTML = cipherText;
+        let plaintext = "";
+        for (let i = 0; i < text.length; i++) {
+          let code = BigInt(Math.pow(text.charCodeAt(i), key) % mod);
+          let value = String.fromCharCode(code);
+          plaintext += value;
+        }
+        document.getElementById("message").innerHTML = plaintext;
       }
     </script>
   </body>
