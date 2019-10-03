@@ -36,7 +36,7 @@ function getRandomInt(max) {
 }
 
 function gen_prime() { 
-    let max = 10000;
+    let max = 100;
     let primeArray = get_primes(max);
 
     let i = getRandomInt(primeArray.length);
