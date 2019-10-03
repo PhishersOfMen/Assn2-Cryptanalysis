@@ -58,7 +58,8 @@
         text = document.getElementById("cipher").value;
         let plaintext = "";
         for (let i = 0; i < text.length; i++) {
-          let code = Math.pow(text.charCodeAt(i), key) % mod;
+          let ascii = text.charCodeAt(i) - 65;
+          let code = Math.pow(ascii, key) % mod;
           let value = String.fromCharCode(code);
           plaintext += value;
         }

@@ -58,7 +58,7 @@
         text = document.getElementById("message").value;
         let ciphertext = "";
         for (let i = 0; i < text.length; i++) {
-          let code = Math.pow(text.charCodeAt(i), key) % mod;
+          let code = (Math.pow(text.charCodeAt(i), key) % mod) + 65;
           let value = String.fromCharCode(code);
           ciphertext += value;
         }
