@@ -59,9 +59,9 @@
         text = document.getElementById("cipher").value;
         let plaintext = "";
         for (let i = 0; i < text.length; i++) {
-          let ascii = text.charCodeAt(i) - 65;
-          let code = Math.pow(ascii, key) % mod;
-          let value = String.fromCharCode(code);
+          let ascii = text.charCodeAt(i);
+          let code = (BigInt(ascii) ** BigInt(key)) % BigInt(mod);
+          let value = String.fromCharCode(Number(code));
           plaintext += value;
         }
         document.getElementById("message").innerHTML = plaintext;
