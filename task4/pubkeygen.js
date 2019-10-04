@@ -36,7 +36,7 @@ function getRandomInt(max) {
 }
 
 function gen_prime() { 
-    let max = 17;
+    let max = 1000;
     let primeArray = get_primes(max);
 
     let i = getRandomInt(primeArray.length);
@@ -44,13 +44,13 @@ function gen_prime() {
     while (i == j) {
         j = getRandomInt(primeArray.length);
     }
-    // while (i*j > 146) {
-    //     let i = getRandomInt(primeArray.length);
-    //     let j = getRandomInt(primeArray.length);
-    //     while (i == j) {
-    //         j = getRandomInt(primeArray.length);
-    //     }
-    // }
+    while (i*j < 128) {
+        i = getRandomInt(primeArray.length);
+        j = getRandomInt(primeArray.length);
+        while (i == j) {
+            j = getRandomInt(primeArray.length);
+        }
+    }
     let p = primeArray[i];
     let q = primeArray[j];
 
