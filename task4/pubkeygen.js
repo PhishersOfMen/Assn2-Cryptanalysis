@@ -126,17 +126,16 @@ function gen_public_key() {
     let relPrime = rel_prime(fn);
 
     let key = [relPrime,m];
-    console.log(key[0]);
-    console.log(key[1]);
 
     display_key("public", key);
     saveKey("public");
-    return key;
+    return [...key, fn];
 }
 
-function modInverse([pubKey, m]) {
-    for (let i = 1; i < m; ++i) {
-        if ((i * pubKey) % m == 1) {
+function modInverse([pubKey, m, fn]) {
+    pubKey = pubKey % fn;
+    for (let i = 1; i < fn; ++i) {
+        if ((i * pubKey) % fn == 1) {
             return [i,m];
         }
     }
@@ -148,8 +147,12 @@ function gen_private_key(pubKey) {
     while (!key) {
         key = modInverse(pubKey);
         if (key) {
-            break;
-        }
+            if (key[0] == pubKey[0]) {
+                key = 0;
+            } else {
+                break;
+            }
+        } 
         pubKey = gen_public_key();
     }
     
