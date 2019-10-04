@@ -115,8 +115,8 @@ function rel_prime(fn) {
     return relPrimes[getRandomInt(relPrimes.length)];
 }
 
-function display_key(pub_key) {
-    document.getElementById("public").innerHTML = pub_key;
+function display_key(id, key) {
+    document.getElementById(id).value = key;
 }
 
 function gen_public_key() {
@@ -125,9 +125,52 @@ function gen_public_key() {
     let fn = f_n(primes);
     let relPrime = rel_prime(fn);
 
-    let temp = [relPrime,m];
-    console.log(temp[0]);
-    console.log(temp[1]);
+    let key = [relPrime,m];
+    console.log(key[0]);
+    console.log(key[1]);
 
-    display_key([relPrime,m]);
+    display_key("public", key);
+    saveKey("public");
+    return key;
+}
+
+function modInverse([pubKey, m]) {
+    for (let i = 1; i < m; ++i) {
+        if ((i * pubKey) % m == 1) {
+            return [i,m];
+        }
+    }
+    return 0;
+}
+
+function gen_private_key(pubKey) {
+    let key = 0;
+    while (!key) {
+        key = modInverse(pubKey);
+        if (key) {
+            break;
+        }
+        pubKey = gen_public_key();
+    }
+    
+    display_key("private", key);
+    saveKey("private");
+}
+
+function getTextURL(text) {
+    return URL.createObjectURL(new Blob([text], {type: "text/plain"}));
+}
+
+function saveKey(id) {
+    let key = document.getElementById(id).value;
+    let button = document.getElementById(`save-${id}`);
+
+    if (button.href)
+
+    if (key) {
+        let url = getTextURL(key);
+        button.classList.remove("disabled");
+        button.href = url;
+        button.setAttribute("download", `${id}.key`);
+    }
 }

@@ -15,21 +15,25 @@
     <div class="container">
         <a href="#" id="generate" class="btn">Generate</a>
         <div class="keys row">
-            <div class="private container">
-                <label for="private">Private Key</label>
-                <textarea name="privateKey" id="private" cols="30" rows="10" readonly></textarea>
-            </div>
             <div class="public container">
                 <label for="public">Public Key</label>
                 <textarea name="publicKey" id="public" cols="30" rows="10" readonly></textarea>
             </div>
+            <div class="private container">
+                <label for="private">Private Key</label>
+                <textarea name="privateKey" id="private" cols="30" rows="10" readonly></textarea>
+            </div>
         </div>
-        <a href="#" class="disabled btn">Save Keys</a>
+        <div class="save row">
+            <a href="#" id="save-public" class="disabled btn">Save Public Key</a>
+            <a href="#" id="save-private" class="disabled btn">Save Private Key</a>
+        </div>
     </div>
     <script>
         document.querySelector("#back").addEventListener("click", ()=>window.history.back())
         document.querySelector("#generate").addEventListener("click", ()=>{
-            gen_public_key();
+            let pubKey = gen_public_key();
+            gen_private_key(pubKey);
         });
     </script>
 </body>
