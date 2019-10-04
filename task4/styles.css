@@ -20,14 +20,16 @@ body {
   flex-direction: column;
   margin: auto;
 }
+.btn {
+  margin: 5px;
+  text-align: center;
+  padding: 1em;
+}
 a.btn {
   text-decoration: none;
   color: white;
   background-color: var(--site-color);
   width: 8%;
-  text-align: center;
-  margin: 5px;
-  padding: 1em;
 }
 .main a.btn {
   font-size: 20px;
@@ -55,4 +57,13 @@ a.btn.disabled:hover {
 }
 .nav .btn {
   border-radius: 10px;
+}
+.private, .public {
+  margin: 5px;
+}
+.save .btn {
+  width: 33%;
+}
+#generate {
+  width: initial;
 }

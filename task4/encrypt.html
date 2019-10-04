@@ -3,11 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Generate RSA Keys</title>
+    <title>Encrypt RSA Encrypted Message</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <h1 class="title">Generate RSA Keys</h1>
+    <h1 class="title">Encrypt RSA Encrypted Message</h1>
     <div class="nav">
       <a href="index.html" id="back" class="btn">Back</a>
     </div>
@@ -16,7 +16,7 @@
       <textarea name="message" id="message" cols="30" rows="10"></textarea>
       <input type="button" id="file_button" class="btn" value="Load Key File" />
       <input type="file" id="key_file" />
-      <a href="#" class="disabled btn" onClick="encrypt()">Encrypt </a>
+      <a href="#" id="encrypt-btn" class="disabled btn" onClick="encrypt()">Encrypt </a>
       <label for="cipher">Ciphertext</label>
       <textarea
         name="ciphertext"
@@ -45,6 +45,7 @@
           let keymod = evt.target.result.split(",");
           key = keymod[0];
           mod = keymod[1];
+          document.getElementById("encrypt-btn").classList.toggle("disabled");
         };
         document.getElementById("file_button").disabled = true;
         document.getElementById("file_button").value = "Key Loaded";
