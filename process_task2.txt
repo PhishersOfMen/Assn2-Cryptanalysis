@@ -1,0 +1,6 @@
+Tool Used: 
+Link: https://www.devglan.com/online-tools/rsa-encryption-decryption
+
+Process:
+1. Generation: Selected 2048 bit RSA Key Size
+2. Encryption: Selected Cipher Type RSA
